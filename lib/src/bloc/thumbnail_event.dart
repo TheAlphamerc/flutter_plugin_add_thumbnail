@@ -16,4 +16,4 @@ class UrlAdded extends ThumbnailEvent {
   String toString() => 'New url added { Url: $url }';
 }
 
-class UrlChanged extends ThumbnailEvent {}
+class UrlChange extends ThumbnailEvent {}

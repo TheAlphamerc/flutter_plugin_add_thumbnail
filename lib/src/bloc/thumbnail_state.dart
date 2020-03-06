@@ -11,6 +11,10 @@ abstract class ThumbnailState extends Equatable{
 
 class LoadingMedia extends ThumbnailState {}
 
+class DialogOpened extends ThumbnailState {}
+
+class UrlChanged extends ThumbnailState {}
+
 class FailureDetail extends ThumbnailState {}
 
 class LoadedMedia extends ThumbnailState {

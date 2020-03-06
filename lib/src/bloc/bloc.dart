@@ -8,9 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ThumbnailBloc extends Bloc<ThumbnailEvent, ThumbnailState> {
   final Repository repo = Repository();
 
-  // ThumbnailBloc(this.repo);
+  
   @override
-  ThumbnailState get initialState => LoadingMedia();
+  ThumbnailState get initialState => DialogOpened();
 
   @override
   Stream<ThumbnailState> mapEventToState(ThumbnailEvent event) async* {

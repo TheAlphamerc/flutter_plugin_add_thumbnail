@@ -16,8 +16,6 @@ class AddMediaDialogContent extends StatefulWidget {
 
 class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
   TextEditingController _txtController = TextEditingController();
-  bool showPreview = false;
-  bool errorOccurred = false;
   String textFieldText = "";
   TextField _textField;
   // final bloc = Bloc();
@@ -44,7 +42,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
       maxLines: 1,
       onChanged: (text) {
         textFieldText = text;
-        BlocProvider.of<ThumbnailBloc>(context).add(UrlChanged());
+        BlocProvider.of<ThumbnailBloc>(context).add(UrlChange());
       },
       controller: _txtController,
       textAlign: TextAlign.start,
@@ -139,6 +137,9 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
 
   String link;
   Widget _previewSection(ThumbnailState state) {
+    if(state is DialogOpened){
+      return SizedBox();
+    }
     if (state is LoadingMedia) {
       return Container(
         padding: EdgeInsets.symmetric(vertical: 32, horizontal: 8),
