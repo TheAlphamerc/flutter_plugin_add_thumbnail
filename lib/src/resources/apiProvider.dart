@@ -1,14 +1,14 @@
 import 'dart:convert';
-import 'package:add_thumbnail/src/media_info.dart';
-import 'package:http/http.dart' as http;
 
-class Utils {
-  
-  static Future<MediaInfo> getMediaInfo (String videoUrl) async {
+import 'package:http/http.dart' as http;
+import '../media_info.dart';
+
+class ThumbnailApiProvider {
+
+  Future<MediaInfo> fetchMediaInfo (String videoUrl) async {
     if(videoUrl == null || videoUrl.isEmpty){
       return null;
     }
-    print(videoUrl);
     return await http.Client()
         .get("https://noembed.com/embed?url=" + videoUrl)
         .then((result) => result.body)

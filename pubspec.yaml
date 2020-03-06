@@ -11,10 +11,15 @@ dependencies:
   flutter:
     sdk: flutter
 
+  http:
+  rxdart: ^0.23.1
+  equatable: ^1.0.3
+  flutter_bloc: ^3.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  http:
+  
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
