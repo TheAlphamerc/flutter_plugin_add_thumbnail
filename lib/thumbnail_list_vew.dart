@@ -7,6 +7,7 @@ class MediaListView extends StatefulWidget {
   /// Preview  media list thumbnail
   ///```dart
   /// List<MediaInfo> mediaList = [];
+  /// List<String> urlList = ["https://www.youtube.com/watch?v=uv54ec8Pg1k"];
   /// Widget getMediaList(List<String> urlList) {
   ///   return MediaListView(
   ///     urls: urlList,
@@ -40,7 +41,7 @@ class MediaListView extends StatefulWidget {
   /// ```
   final List<MediaInfo> mediaList;
 
-  ///  To show thumbnails list pass valid media url list.
+  /// To show thumbnails list pass valid media url list.
   ///
   /// If this is set to null thumbnail list will create from media list
   /// 
@@ -52,17 +53,15 @@ class MediaListView extends StatefulWidget {
   /// ```
   final List<String> urls;
 
-  /// The callback that is called when the thiumbnail is tapped or otherwise activated.
-  ///
-  /// If this is set to null, the button will be disabled.
-  final Function onPressed;
+  /// The callback that returned url when the thiumbnail is tapped.
+  final Function(String) onPressed;
   
   /// if not provided, a PLAY icon will show
   final Widget overlayChild;
   
   /// this will set title text background Color
   ///
-  /// If this is set to null, the button will be disabled.
+  /// If this is set to null, then default color value will set ` Colors.red`
   /// 
   ///  Example :-
   /// ```dart
@@ -72,7 +71,7 @@ class MediaListView extends StatefulWidget {
   
   /// this will set title text style
   ///
-  /// If this is set to null, the button didn't do anything.
+  /// If this is set to null, then default color value will set ` Colors.white`
   /// 
   ///  Example :-
   /// ```dart

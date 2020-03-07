@@ -25,6 +25,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List<MediaInfo> mediaList = [];
+  List<String> urlList = ["https://www.youtube.com/watch?v=uv54ec8Pg1k"];
 
   void openAddLinkDialog() async {
     // Open  thumbnail dialog to add link
@@ -41,13 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget getMediaList(List<String> urlList) {
+  Widget getMediaList() {
     return MediaListView(
+      onPressed: (url) {
+        print(url);
+      },
       urls: urlList,
       mediaList: mediaList,
-      onPressed: (){
-        
-      },
     );
   }
 
@@ -58,7 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: getMediaList(["https://www.youtube.com/watch?v=uv54ec8Pg1k"]),
+      body:(mediaList == null || mediaList.isEmpty) && (urlList == null || urlList.isEmpty)
+          ? Center(
+              child: Text(
+                "Press add button to add thumbnail.",
+                style: TextStyle(color: Colors.black54, fontSize: 16),
+              ),
+            )
+          : getMediaList(),
       floatingActionButton: FloatingActionButton(
         onPressed: openAddLinkDialog,
         tooltip: 'Add link',
