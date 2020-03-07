@@ -4,6 +4,17 @@ import 'src/resources/apiProvider.dart';
 import 'src/widget/custom_card.dart';
 
 class MediaListView extends StatefulWidget {
+  /// Preview  media list thumbnail
+  ///```dart
+  /// List<MediaInfo> mediaList = [];
+  /// Widget getMediaList(List<String> urlList) {
+  ///   return MediaListView(
+  ///     urls: urlList,
+  ///     mediaList: mediaList,
+  ///  );
+  /// }
+  ///```
+
   const MediaListView({
     Key key,
     this.urls,
@@ -19,20 +30,57 @@ class MediaListView extends StatefulWidget {
   // when it would otherwise have been recycled.
   final bool keepAlive;
 
-  // populate media list
+  /// populate thumbnail list
+  ///
+  /// If this is set to null thumbnail list will create from urls
+  /// 
+  /// If mediaList and urls both have values then thumbnail list will create using both list.
+  /// ``` dart
+  /// List<MediaInfo> mediaList = [];
+  /// ```
   final List<MediaInfo> mediaList;
 
-  // Call function when thumbnail card pressed
+  ///  To show thumbnails list pass valid media url list.
+  ///
+  /// If this is set to null thumbnail list will create from media list
+  /// 
+  /// If mediaList and urls both have values then thumbnail list will create using both list.
+  /// 
+  ///  Example :-
+  /// ```dart
+  /// List<String> urls = ["https://www.youtube.com/watch?v=uv54ec8Pg1k", "https://www.youtube.com/watch?v=XMG8Sm4YGfM"]
+  /// ```
+  final List<String> urls;
+
+  /// The callback that is called when the thiumbnail is tapped or otherwise activated.
+  ///
+  /// If this is set to null, the button will be disabled.
   final Function onPressed;
-
-  // if not provided, a PLAY icon will show
+  
+  /// if not provided, a PLAY icon will show
   final Widget overlayChild;
-
+  
+  /// this will set title text background Color
+  ///
+  /// If this is set to null, the button will be disabled.
+  /// 
+  ///  Example :-
+  /// ```dart
+  /// titleTextBackGroundColor: Colors.grey[850]
+  /// ```
   final Color titleTextBackGroundColor;
-  // set title text style
+  
+  /// this will set title text style
+  ///
+  /// If this is set to null, the button didn't do anything.
+  /// 
+  ///  Example :-
+  /// ```dart
+  /// titleTextStyle: TextStyle(color:Colors.white),
+  /// ```
   final TextStyle titleTextStyle;
 
-  final List<String> urls;
+  
 
   @override
   _MediaListViewState createState() => _MediaListViewState();
