@@ -1,6 +1,5 @@
-import 'package:add_thumbnail/src/media_info.dart';
+import 'package:add_thumbnail/src/model/media_info.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 
 abstract class ThumbnailState extends Equatable{
   const ThumbnailState();

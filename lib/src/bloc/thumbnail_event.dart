@@ -1,4 +1,3 @@
-import 'package:add_thumbnail/src/media_info.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ThumbnailEvent extends Equatable {
@@ -8,9 +7,9 @@ abstract class ThumbnailEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class UrlAdded extends ThumbnailEvent {
+class AddUrl extends ThumbnailEvent {
   final String url;
-  const UrlAdded({this.url});
+  const AddUrl({this.url});
 
   @override
   String toString() => 'New url added { Url: $url }';

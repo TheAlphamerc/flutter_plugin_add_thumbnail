@@ -14,7 +14,7 @@ class ThumbnailBloc extends Bloc<ThumbnailEvent, ThumbnailState> {
 
   @override
   Stream<ThumbnailState> mapEventToState(ThumbnailEvent event) async* {
-    if (event is UrlAdded) {
+    if (event is AddUrl) {
       try {
         yield LoadingMedia();
         var media = await repo.fetchAllNews(link: event.url);
@@ -24,8 +24,8 @@ class ThumbnailBloc extends Bloc<ThumbnailEvent, ThumbnailState> {
         yield FailureDetail();
       }
     }
-    if (event is UrlChanged) {
-      yield LoadedMedia(mediaInfo: null);
+    if (event is UrlChange) {
+      yield UrlChanged();
     }
   }
 }

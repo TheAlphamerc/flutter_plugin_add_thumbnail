@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import '../media_info.dart';
+import 'package:add_thumbnail/src/model/media_info.dart';
 
 class ThumbnailApiProvider {
 
@@ -13,9 +13,6 @@ class ThumbnailApiProvider {
         .get("https://noembed.com/embed?url=" + videoUrl)
         .then((result) => result.body)
         .then(json.decode)
-        .then((json) => MediaInfo(
-      title: json['title'],
-      thumbnailUrl: json['thumbnail_url'],
-    ));
+        .then((json) =>MediaInfo.fromJson(json));
   }
 }
