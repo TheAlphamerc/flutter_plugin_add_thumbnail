@@ -7,8 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class AddMediaDialogContent extends StatefulWidget {
+  final String titleText;
+  final String subTitleText;
+  final String textFieldHintText;
+  final String errorText;
+
+  const AddMediaDialogContent(
+      {Key key,
+      this.titleText,
+      this.subTitleText,
+      this.textFieldHintText,
+      this.errorText})
+      : super(key: key);
   @override
   _AddMediaDialogContentState createState() => _AddMediaDialogContentState();
 }
@@ -41,7 +52,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
       textAlign: TextAlign.start,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-        hintText: "Add link here..",
+        hintText: widget.textFieldHintText,
         border: InputBorder.none,
       ),
     );
@@ -182,7 +193,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
                     ),
                   )
                 : Text(
-                    "hmm, this link looks too complicated for me... Can you try another one?",
+                    widget.errorText,
                     style: TextStyle(color: Colors.white70),
                     textAlign: TextAlign.center,
                   ),
@@ -200,12 +211,11 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
           padding: EdgeInsets.symmetric(horizontal: 16),
           shrinkWrap: true,
           children: <Widget>[
-           
             // top padding
             SizedBox(height: 32),
 
             // title
-            Text("Add a media link here",
+            Text(widget.titleText,
                 style: Theme.of(context)
                     .textTheme
                     .title
@@ -213,13 +223,13 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
             SizedBox(height: 16),
 
             // sub title
-            Text("Paste media URL to view thumbnail",
+            Text(widget.subTitleText,
                 style: Theme.of(context)
                     .textTheme
                     .subtitle
                     .copyWith(fontSize: 12)),
             SizedBox(height: 16),
-            
+
             // text field
             Container(
                 decoration: BoxDecoration(
@@ -232,7 +242,7 @@ class _AddMediaDialogContentState extends State<AddMediaDialogContent> {
 
             // thumbnail preview
             Container(child: _previewSection(state)),
-            
+
             // footer
             _footer(state)
           ],
