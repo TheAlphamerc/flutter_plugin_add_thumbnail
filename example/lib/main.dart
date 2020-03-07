@@ -8,8 +8,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Add Thumbnail',
+      home: MyHomePage(title: 'Add thumbnail plugin example'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -23,15 +24,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String link = '';
+  List<MediaInfo> mediaList = [];
 
   void addLink() async {
-    await ThumbnailAdder.addLink(
+    // Open add thumbnail dialog
+    await Thumbnail.addLink(
       context: context,
-      onLinkAdded: (text) {
-        if (text != null && text.isNotEmpty) {
+      // callback that return thumbnail info
+      onLinkAdded: (mediaInfo) {
+        if (mediaInfo != null && mediaInfo.thumbnailUrl.isNotEmpty) {
           setState(() {
-            link = text;
+            mediaList.add(mediaInfo);
           });
         }
       },
@@ -41,29 +44,21 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFEEEEEE),
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Link:-',
-              style: Theme.of(context).textTheme.body2,
-            ),
-            Text(
-              '$link',
-              style: Theme.of(context).textTheme.body1,
-            ),
-          ],
-        ),
+      body: MediaListView(
+        urls: ["https://www.youtube.com/watch?v=uv54ec8Pg1k"],
+        mediaList: mediaList,
+        // titleTextStyle: TextStyle(color:Colors.red),
+        // titleTextBackGroundColor: Colors.grey[850]
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: addLink,
-        tooltip: 'Increment',
+        tooltip: 'Add link',
         child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }

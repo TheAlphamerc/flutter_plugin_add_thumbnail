@@ -1,21 +1,20 @@
 library add_thumbnail;
-
-import 'package:add_thumbnail/src/add_thumbnail_widget.dart';
+export 'thumbnail_list_vew.dart';
+export 'package:add_thumbnail/src/model/media_info.dart';
 import 'package:add_thumbnail/src/bloc/bloc.dart';
+import 'package:add_thumbnail/src/model/media_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'src/widget/add_thumbnail_widget.dart';
+
 /// A Calculator.
-class ThumbnailAdder {
-  static Future<String> addLink({
+class Thumbnail {
+  static Future<void> addLink({
     BuildContext context,
-    Function(String) onLinkAdded,
+    ValueChanged<MediaInfo> onLinkAdded,
   }) async {
-    // BuildContext context1;
-    // var builder = Builder(builder: (context){
-    //   context1 = context;
-    // });
-    var link = await showDialog(
+    var media = await showDialog(
         context: context,
         child: Builder(
           builder: (context) {
@@ -27,18 +26,11 @@ class ThumbnailAdder {
                 ),
               ],
               child: AddMediaDialogContent(),
-            )
-                // BlocProvider.value(
-                //   value: BlocProvider.of<ThumbnailBloc>(context),
-                //   child: AddMediaDialogContent(),
-
-                //   //  AddMediaDialogContent(),
-                // ),
-                );
+            ));
           },
         ));
-    if (link != null && link.isNotEmpty) {
-      onLinkAdded(link);
+    if (media != null) {
+      onLinkAdded(media);
     }
   }
 }
