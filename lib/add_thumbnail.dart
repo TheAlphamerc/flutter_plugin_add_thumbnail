@@ -48,7 +48,6 @@ class Thumbnail {
   }) async {
     var media = await showDialog(
         context: context,
-        child: Builder(
           builder: (context) {
             return Dialog(
                 child: MultiBlocProvider(
@@ -65,7 +64,7 @@ class Thumbnail {
               ),
             ));
           },
-        ));
+        );
     if (media != null) {
       onLinkAdded(media);
     }
